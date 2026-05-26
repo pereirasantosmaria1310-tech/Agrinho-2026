@@ -1,1 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroSustentável - O Futuro do Agronegócio</title>
+    <style>
+        /* CSS REUTILIZÁVEL E RESPONSIVO */
+        :root {
+            --primary-color: #2e7d32;
+            --secondary-color: #81c784;
+            --dark-color: #1b5e20;
+            --light-color: #f1f8e9;
+            --text-color: #333;
+            --danger-color: #e53935;
+        }
 
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            color: var(--text-color);
+            background-color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Cabeçalho e Navegação */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+        }
+
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            margin-top: 70px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1592982537447-7440770cbfc9?auto=format&fit=crop&w=1200&q=80') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            max-width: 800px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin-bottom: 25px;
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: var(--dark-color);
+            transform: translateY(-2px);
+        }
+
+        /* Seções Gerais */
+        section {
+            padding: 80px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--dark-color);
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Cartões de Conteúdo */
+        .card {
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--primary-color);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card.alert {
+            border-top-color: var(--danger-color);
+        }
+
+        /* Gráficos / Mockups e Mapas simulados */
+        .mock-chart, .mock-map {
+            background-color: #eaeaea;
+            border-radius: 8px;
+            padding: 40px;
+            text-align: center;
+            font-weight: bold;
+            border: 2px dashed #bbb;
+        }
+
+        .region-badge {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            margin: 5px;
+            font-size: 0.85rem;
+        }
+
+        /* Ferramentas Interativas (Quiz e Calculadora) */
+        .interactive-box {
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group select, .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        #quiz-container .option-btn {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: white;
+            border: 1px solid #ccc;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        #quiz-container .option-btn:hover {
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #222;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            nav ul {
+                display: none; /* Em um cenário real, adicionaria um menu hambúrguer */
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <div class="logo">🌱 AgroSustentável</div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#producao">Produção Agrícola</a></li>
+                    <li><a href="#sustentabilidade">Sustentabilidade</a></li>
+                    <li><a href="#desafios">Desafios Ambientais</a></li>
+                    <li><a href="#solucoes">Soluções</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="inicio" class="hero">
+        <h1>"Tecnologia, Terra e Futuro: O Agro que alimenta o mundo e preserva o amanhã."</h1>
+        <p>O Brasil desempenha um papel vital na segurança alimentar global. Nosso desafio e missão é expandir a produção em perfeita harmonia com a preservação dos nossos recursos naturais.</p>
+        <a href="#sustentabilidade" class="btn">Conheça as Tecnologias</a>
+    </section>
+
+    <section id="producao">
+        <h2 class="section-title">O Agro na Economia</h2>
+        <div class="grid-2">
+            <div>
+                <h3>Impacto Local e Nacional</h3>
+                <p>O agronegócio é um dos principais motores do PIB brasileiro, gerando milhões de empregos e fixando o homem no campo com dignidade. Nas economias locais, ele impulsiona o comércio, a infraestrutura e a inovação tecnológica regional.</p>
+                <br>
+                <p>Abaixo, observa-se a curva de crescimento constante da contribuição do setor para a riqueza nacional, evidenciando nossa força produtiva.</p>
+            </div>
+            <div class="mock-chart">
+                <p>📊 Gráfico: Crescimento do PIB do Agronegócio</p>
+                <div style="height: 150px; display: flex; align-items: flex-end; justify-content: space-around; margin-top: 20px;">
+                    <div style="width: 40px; height: 60px; background: var(--secondary-color);">2023</div>
+                    <div style="width: 40px; height: 90px; background: var(--primary-color);">2024</div>
+                    <div style="width: 40px; height: 130px; background: var(--dark-color);">2025</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="sustentabilidade" style="background-color: #fafafa;">
+        <h2 class="section-title">Produção Inteligente e Solo Vivo</h2>
+        <div class="grid-3">
+            <div class="card">
+                <h3>Agricultura de Precisão</h3>
+                <p>Uso de sensores, drones e GPS para aplicar insumos no local correto e na quantidade exata, reduzindo desperdícios.</p>
+            </div>
+            <div class="card">
+                <h3>Irrigação Inteligente</h3>
+                <p>Sistemas automatizados que medem a umidade do solo e o clima, aplicando água apenas quando e onde a planta necessita.</p>
+            </div>
+            <div class="card">
+                <h3>Saúde do Solo</h3>
+                <p>O solo vivo é a base de tudo. Técnicas como <strong>plantio direto</strong> e <strong>rotação de culturas</strong> mantêm os nutrientes e a umidade natural da terra.</p>
+            </div>
+        </div>
+
+        <div class="grid-2" style="margin-top: 40px;">
+            <div class="mock-chart">
+                <h4>Matriz Energética Rural</h4>
+                <p>Uso de Painéis Solares e Biogás (gerado a partir de resíduos orgânicos) transformando fazendas em produtoras de energia limpa.</p>
+            </div>
+            <div>
+                <h3>Antes vs. Depois da Tecnologia</h3>
+                <blockquote>"Após a implementação do plantio direto e da irrigação gota a gota, reduzimos o consumo de água em 40% e aumentamos a produtividade da soja em 18%." - <em>Depoimento de SLC Agrícola.</em></blockquote>
+            </div>
+        </div>
+    </section>
+
+    <section id="desafios">
+        <h2 class="section-title">Desafios Ambientais Urgentes</h2>
+        <p style="text-align: center; max-width: 800px; margin: 0 auto 40px;">Para crescer com responsabilidade, o setor precisa encarar de frente e mitigar seus principais gargalos ecológicos.</p>
+        <div class="grid-3">
+            <div class="card alert">
+                <h3>Desmatamento</h3>
+                <p>A expansão sobre áreas de vegetação nativa ameaça a biodiversidade e altera os regimes de chuvas essenciais para a própria agricultura.</p>
+            </div>
+            <div class="card alert">
+                <h3>Pegada de Carbono</h3>
+                <p>As emissões de gases estufa pelo manejo inadequado e pecuária tradicional aceleram as mudanças climáticas globais.</p>
+            </div>
+            <div class="card alert">
+                <h3>Uso da Água</h3>
+                <p>O uso excessivo ou a captação incorreta de recursos hídricos pode esgotar mananciais locais preciosos.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="solucoes" style="background-color: #f1f8e9;">
+        <h2 class="section-title">Soluções Interativas e Tecnologias Emergentes</h2>
+        
+        <div class="grid-2">
+            <div>
+                <h3>Mapeamento da Sustentabilidade</h3>
+                <p>Descubra as tecnologias aplicadas pelo Brasil para restaurar ecossistemas através da agricultura regenerativa:</p>
+                <div class="mock-map" style="margin-top: 15px;">
+                    <p>🗺️ Mapa Interativo do Agro Verde</p>
+                    <span class="region-badge">Norte: Sistemas Agroflorestais</span>
+                    <span class="region-badge">Centro-Oeste: Integração Lavoura-Pecuária-Floresta (ILPF)</span>
+                    <span class="region-badge">Sul: Plantio Direto Avançado</span>
+                </div>
+            </div>
+
+            <div class="interactive-box">
+                <h3>Calculadora de Impacto Hídrico</h3>
+                <p style="font-size: 0.9rem; margin-bottom: 15px;">Selecione sua cultura para entender a demanda hídrica estimada por hectare.</p>
+                <div class="form-group">
+                    <label for="cultura">Selecione a Cultura:</label>
+                    <select id="cultura" onchange="calcularAgua()">
+                        <option value="">-- Selecione --</option>
+                        <option value="soja">Soja (Manejo Sustentável)</option>
+                        <option value="milho">Milho (Irrigação Inteligente)</option>
+                        <option value="arroz">Arroz Irrigado</option>
+                    </select>
+                </div>
+                <div id="resultado-hidrico" style="font-weight: bold; color: var(--dark-color);"></div>
+            </div>
+        </div>
+
+        <div class="interactive-box" style="margin-top: 40px; max-width: 600px; margin-left: auto; margin-right: auto;">
+            <h3>Teste seus Conhecimentos</h3>
+            <div id="quiz-container">
+                <p id="quiz-question">O que caracteriza o sistema de Plantio Direto?</p>
+                <button class="option-btn" onclick="responderQuiz(true)">Cultivar sem revolver o solo e mantendo a palhada anterior.</button>
+                <button class="option-btn" onclick="responderQuiz(false)">Arar a terra profundamente antes de cada nova semeadura.</button>
+                <p id="quiz-feedback" style="margin-top: 10px; font-weight: bold;"></p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato">
+        <h2 class="section-title">Seja um Agente de Mudança</h2>
+        <div class="grid-2">
+            <div>
+                <h3>Faça a Diferença</h3>
+                <p>O futuro da nossa alimentação e do planeta depende das escolhas que fazemos hoje. Apoie produtores conscientes, dissemine o conhecimento e faça parte da evolução verde do campo.</p>
+                <br>
+                <p>Tem dúvidas, sugestões ou cases de sucesso para compartilhar? Envie uma mensagem para a nossa equipe!</p>
+            </div>
+            <div>
+                <form id="contactForm" onsubmit="validarFormulario(event)">
+                    <div class="form-group">
+                        <label for="nome">Nome:</label>
+                        <input type="text" id="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem:</label>
+                        <textarea id="mensagem" rows="4" required></textarea>
+                    </div>
+                    <button type="submit" class="btn" style="width: 100%;">Enviar Mensagem</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 AgroSustentável. Todos os direitos reservados.</p>
+        <div class="footer-links" style="margin-top: 15px;">
+            <a href="#">Facebook</a> | <a href="#">Instagram</a> | <a href="#">LinkedIn</a>
+        </div>
+    </footer>
+
+    <script>
+        // Lógica da Calculadora Hídrica
+        function calcularAgua() {
+            const cultura = document.getElementById('cultura').value;
+            const resultado = document.getElementById('resultado-hidrico');
+            
+            if (cultura === 'soja') {
+                resultado.innerHTML = "💧 Economia detectada! Com sensores de precisão, o gasto estimado cai para 4.500 m³/ha com desperdício próximo a zero.";
+            } else if (cultura === 'milho') {
+                resultado.innerHTML = "💧 Irrigação Inteligente reduz o uso de água em até 30%, adaptando a rega ao microclima local.";
+            } else if (cultura === 'arroz') {
+                resultado.innerHTML = "⚠️ Atenção: Cultura de alta demanda hídrica. Recomenda-se o manejo de inundação intermitente para reduzir o metano e poupar água.";
+            } else {
+                resultado.innerHTML = "";
+            }
+        }
+
+        // Lógica do Quiz
+        function responderQuiz(isCorrect) {
+            const feedback = document.getElementById('quiz-feedback');
+            if (isCorrect) {
+                feedback.innerHTML = "🎉 Correto! O plantio direto evita a erosão, protege os microrganismos do solo e retém carbono.";
+                feedback.style.color = "var(--primary-color)";
+            } else {
+                feedback.innerHTML = "❌ Incorreto. Revolver o solo desestrutura sua biologia e aumenta os riscos de erosão. Tente novamente!";
+                feedback.style.color = "var(--danger-color)";
+            }
+        }
+
+        // Validação de Formulário
+        function validarFormulario(event) {
+            event.preventDefault();
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            
+            if(nome.trim() === "" || email.trim() === "") {
+                alert("Por favor, preencha todos os campos obrigatórios.");
+                return;
+            }
+            
+            alert(`Obrigado pelo contato, ${nome}! Sua mensagem foi enviada com sucesso.`);
+            document.getElementById('contactForm').reset();
+        }
+    </script>
+</body>
+                                                      </html>
